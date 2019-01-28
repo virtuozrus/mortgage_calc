@@ -6,7 +6,7 @@
  * Time: 16:38
  */
 
-$Db = array(
+$database = array(
     "host"      =>  "localhost",
     "name"      =>  "root",
     "password"  =>  "83211238",

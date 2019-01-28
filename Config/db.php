@@ -9,7 +9,12 @@ class Database
 
     public static function getBdd() {
         if(is_null(self::$bdd)) {
-            self::$bdd = new PDO("mysql:host=localhost;dbname=calc", 'root', '83211238');
+            require (ROOT . 'Config/config.php');
+            $host = $database['host'];
+            $dbname = $database['db_name'];
+            $username = $database['name'];
+            $passwd = $database['password'];
+            self::$bdd = new PDO("mysql:host=$host;dbname=$dbname", $username, $passwd);
         }
         return self::$bdd;
     }

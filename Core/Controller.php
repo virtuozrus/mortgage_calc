@@ -26,7 +26,6 @@
             }
         }
 
-        //шота не робит
         public function secure_input($data = "")
         {
             $data = trim($data);
@@ -35,7 +34,6 @@
             return $data;
         }
 
-        //шота не робит
         public function check_length($value = "", $min, $max) {
             $result = (strlen($value) < $min || strlen($value) > $max);
             return !$result;

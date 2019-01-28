@@ -27,25 +27,13 @@ class loginController extends Controller
     //страница калькулятора
     function calc()
     {
+        require (ROOT . "Models/Visits.php");
+
+        $visits = new Visits();
+        $d['visits'] = $visits->visit();
+        $this->set($d);
+
         $this->render("calc");
-    }
-
-    // журнал посещений
-    function visitsLog() {
-
-        require(ROOT . 'Models/Visits.php');
-
-        $userhash = $_COOKIE["userhash"]; // Узнаём, что за пользователь
-        if (!$userhash) {
-            /* Если это новый пользователь, то добавляем ему cookie, уникальные для него */
-            $userhash = uniqid();
-            setcookie("userhash", $userhash, 0x6FFFFFFF);
-        }
-        $ip = ip2long($_SERVER["REMOTE_ADDR"]); // Преобразуем IP в число
-        $uri = $_SERVER["REQUEST_URI"]; // Узнаём uri
-
-        $v = new Visits();
-
     }
 
 // смена языка
@@ -78,15 +66,7 @@ class loginController extends Controller
 //            default:
 //                require (ROOT . "Config/lang.ru.php");
 //        }
-
-//        if ($currentLang == 'en' || $currentLang == 'ru') {
-//            include_once (ROOT . "Config/lang.".$currentLang.".php");
-////            return $currentLang;
-//        } else {
-//            $currentLang = 'en';
-////            return $currentLang;
-//            include_once (ROOT . "Config/lang.".$currentLang.".php");
-//        }
+//
 //    }
 
 }

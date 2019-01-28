@@ -1,13 +1,22 @@
 <?php
 session_start();
 
-// смена языка
-preg_match_all('/([a-z]{1,8}(?:-[a-z]{1,8})?)(?:;q=([0-9.]+))?/', strtolower($_SERVER["HTTP_ACCEPT_LANGUAGE"]), $matches); // Получаем массив $matches с соответствиями
-$langs = array_combine($matches[1], $matches[2]); // Создаём массив с ключами $matches[1] и значениями $matches[2]
+//смена языка
+// Получаем массив $matches с соответствиями
+preg_match_all('/([a-z]{1,8}(?:-[a-z]{1,8})?)(?:;q=([0-9.]+))?/',
+    strtolower($_SERVER["HTTP_ACCEPT_LANGUAGE"]), $matches);
+
+// Создаём массив с ключами $matches[1] и значениями $matches[2]
+$langs = array_combine($matches[1], $matches[2]);
+
 foreach ($langs as $n => $v)
-    $langs[$n] = $v ? $v : 1; // Если нет q, то ставим значение 1
-arsort($langs); // Сортируем по убыванию q
-$default_lang = key($langs); // Берём 1-й ключ первого (текущего) элемента (он же максимальный по q)
+    // Если нет q, то ставим значение 1
+    $langs[$n] = $v ? $v : 1;
+
+// Сортируем по убыванию q
+arsort($langs);
+// Берём 1-й ключ первого (текущего) элемента (он же максимальный по q)
+$default_lang = key($langs);
 $currentLang = substr($default_lang, 0, 2);
 
 switch ($currentLang) {
@@ -19,15 +28,8 @@ switch ($currentLang) {
         break;
     default:
         require (ROOT . "Config/lang.ru.php");
-    //if ($currentLang == 'en' || $currentLang == 'ru') {
-//    include_once (ROOT . "Config/lang.".$currentLang.".php");
-//    print_r($currentLang);
-//} else {
-//    $currentLang = 'en';
-//    include_once (ROOT ."Config/lang.".$currentLang.".php");
-//}
 }
-//?>
+?>
 
 <!doctype html>
 <head>
@@ -53,7 +55,8 @@ switch ($currentLang) {
 <body>
 <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
     <a class="navbar-brand" href="/v/"><?php echo $lang['title_calc'] ?></a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+            aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
 </nav>

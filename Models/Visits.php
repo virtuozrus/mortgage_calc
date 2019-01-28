@@ -9,6 +9,7 @@
 class Visits extends Model
 {
 
+    //журнал посещений
     public function visit() {
         $userhash = $_COOKIE["userhash"]; // Узнаём, что за пользователь
         if (!$userhash) {
@@ -16,7 +17,7 @@ class Visits extends Model
             $userhash = uniqid();
             setcookie("userhash", $userhash, 0x6FFFFFFF);
         }
-        $ip = ip2long($_SERVER["REMOTE_ADDR"]); // Преобразуем IP в число
+        $ip = $_SERVER["REMOTE_ADDR"]; // Преобразуем IP в число
         $uri = $_SERVER["REQUEST_URI"]; // Узнаём uri
 
         $sql = "INSERT INTO `visits` (`userhash`, `ip`, `uri`) VALUES (:userhash, :ip, :uri);";

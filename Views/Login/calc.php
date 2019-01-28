@@ -34,16 +34,16 @@ switch ($currentLang) {
 <h1><?php echo $lang['h1_calc']; ?></h1>
 <form id="form" action="" method="post">
     <label><?php echo $lang['cost']; ?>:</label><br>
-    <input type="text" name="price" id="price" placeholder="1-100 <?php echo $lang['mln']; ?>"><br>
+    <input type="text" name="price" id="price" placeholder="<?php echo $lang['placeholder1']; ?>"><br>
     <label><?php echo $lang['vznos']; ?>:</label><br>
-    <input type="text" name="vznos" id="vznos" placeholder="0-100%"><br>
+    <input type="text" name="vznos" id="vznos" placeholder="<?php echo $lang['placeholder2']; ?>"><br>
     <label><?php echo $lang['srok']; ?>:</label><br>
-    <input type="text" name="period" id="period" placeholder="12-600 <?php echo $lang['years']; ?>"><br><br>
+    <input type="text" name="period" id="period" placeholder="<?php echo $lang['placeholder3']; ?>"><br><br>
     <button type="button" id="btn" onclick="calculate()"><?php echo $lang['submit']; ?></button>
 </form>
 
 <br><br>
 
-<p id="result_form"></p>
+<div id="result_form"></div>
 
 <script src="/Views/Login/form.js"></script>
